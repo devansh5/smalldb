@@ -1,5 +1,5 @@
 {
-  "name": "smalldb",
+  "name": "@devansh5/smalldb",
   "version": "1.0.0",
   "description": "used for storing the persist memory in JSON format",
   "main": "scripts/index.js",
