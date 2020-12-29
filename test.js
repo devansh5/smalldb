@@ -1,7 +1,7 @@
-const Dumbdb=require('./scripts/index')
+const Smalldb=require('./scripts/index')
 
-// const db=new Dumbdb({dir:'datastore'})
-const db=new Dumbdb();
+// const db=new Smalldb({dir:'datastore'})
+const db=new Smalldb();
 // db.create('hello','namaste');
 db.read('hello');
 // db.delete('hello');

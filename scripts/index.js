@@ -1,7 +1,7 @@
 const fs=require('fs');
 const path=require('path');
 
-class Dumbdb {
+class Smalldb {
 	constructor(userOptionals){
 		this.optionals={};
 		this.defaults={
@@ -125,4 +125,4 @@ class Dumbdb {
 	}
 }
 
-module.exports = Dumbdb;
+module.exports = Smalldb;
