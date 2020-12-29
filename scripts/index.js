@@ -9,15 +9,15 @@ class Smalldb {
 			ttl:100000,
 			stringify:JSON.stringify,
 			parse:JSON.parse,
-			encoding:'utf8'
+			encoding:'utf8',
+			expires:'false',
+			exist:'true',
 		}
 		this.setOptionals(userOptionals);
 		fs.access(this.optionals.dir,(err,files)=>{
 			if(!err){
-				console.log('Storage created')
 			}
 			else{
-				console.log('executing');
 				fs.mkdir(this.optionals.dir,{recursive:true},(err)=>{
 					if (err) throw err;
 				})
@@ -45,10 +45,9 @@ class Smalldb {
 		return new Promise((resolve,reject)=>{
 			fs.writeFile(file,json,this.optionals.encoding,(err)=>{
 				if (err){
-					return reject(err);
+					return resolve(err);
 				}
 				resolve({file:file,json:json});
-				console.log('the file is saved');
 			})
 		})
 		
@@ -65,23 +64,23 @@ class Smalldb {
 						console.log("key with name"+key+"does'nt exist")
 						return resolve(err);
 					}
-					
-				};
-				// console.log(_this.optionals);
-				let value=_this.optionals.parse(json);
-				resolve(value);
-				return value;
+				}
+				else{
+					// console.log(_this.optionals);
+					let value=_this.optionals.parse(json);
+					console.log(value);
+				}
 			})
-		})
-		
+		})		
 	}
 
 	read(key){
+		this.optionals.expires=true?this.optionals.ttl<(new Date()).getTime():false;
 		if(typeof key!='string'){
 			console.log("can't access the key other than string");
 		}
-		if(this.optionals.ttl<(new Date()).getTime()){
-			console.log("key is expired");
+		else if(this.optionals.expires){			
+			console.log('working')
 			this.delete(key);
 		}
 		else{
@@ -96,6 +95,7 @@ class Smalldb {
 		}
 		let now=new Date();
 		this.optionals.ttl=now.getTime()+ttl;
+		console.log(ttl);
 		this.createFile(key,value);
 
 	}
@@ -107,7 +107,7 @@ class Smalldb {
 				if(err){
 					if(err.code==='ENOENT'){
 						console.error("key does not exist")
-						return reject(err);
+						return resolve(err);
 					};
 				}
 				else{
