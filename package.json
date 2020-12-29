@@ -1,0 +1,19 @@
+{
+  "name": "dumbdb",
+  "version": "1.0.0",
+  "description": "used for storing the persist memory in JSON format",
+  "main": "scripts/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devansh5/dumbdb.git"
+  },
+  "author": "devansh5",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devansh5/dumbdb/issues"
+  },
+  "homepage": "https://github.com/devansh5/dumbdb#readme"
+}
