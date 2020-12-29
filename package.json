@@ -1,5 +1,5 @@
 {
-  "name": "dumbdb",
+  "name": "smalldb",
   "version": "1.0.0",
   "description": "used for storing the persist memory in JSON format",
   "main": "scripts/index.js",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devansh5/dumbdb.git"
+    "url": "git+https://github.com/devansh5/smalldb.git"
   },
   "author": "devansh5",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/devansh5/dumbdb/issues"
+    "url": "https://github.com/devansh5/smalldb/issues"
   },
-  "homepage": "https://github.com/devansh5/dumbdb#readme"
+  "homepage": "https://github.com/devansh5/smalldb#readme"
 }
