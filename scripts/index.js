@@ -1,9 +1,9 @@
-const fs=require('fs');
-const path=require('path');
+const fs=require('fs')
+const path=require('path')
 
 class Smalldb {
 	constructor(userOptionals){
-		this.optionals={};
+		this.optionals={}
 		this.defaults={
 			dir:'localds',
 			ttl:100000,
@@ -13,41 +13,41 @@ class Smalldb {
 			expires:'false',
 			exist:'true',
 		}
-		this.setOptionals(userOptionals);
+		this.setOptionals(userOptionals)
 		fs.access(this.optionals.dir,(err,files)=>{
 			if(!err){
 			}
 			else{
 				fs.mkdir(this.optionals.dir,{recursive:true},(err)=>{
-					if (err) throw err;
+					if (err) throw err
 				})
 			}
 		})
 	}
 
-	setOptionals = (userOptions)=>{
-		if(!userOptions){
-			this.optionals = this.defaults;
+	setOptionals = (userOptionals)=>{
+		if(!userOptionals){
+			this.optionals = this.defaults
 		}else{
-			for(let key in defaults){
+			for(let key in this.defaults){
 				if(userOptionals[key]){
-					this.optionals[key] = userOptionals[key];
+					this.optionals[key] = userOptionals[key]
 				}else{
-					this.optionals[key] = this.defaults[key];
+					this.optionals[key] = this.defaults[key]
 				}
 			}
 		}
 	}
 
 	createFile=(key,value)=>{
-		let json=this.optionals.stringify(value);
+		let json=this.optionals.stringify(value)
 		let file=this.optionals.dir+"/"+key
 		return new Promise((resolve,reject)=>{
 			fs.writeFile(file,json,this.optionals.encoding,(err)=>{
 				if (err){
-					return resolve(err);
+					resolve(err)
 				}
-				resolve({file:file,json:json});
+				resolve({file:file,json:json})
 			})
 		})
 		
@@ -62,41 +62,39 @@ class Smalldb {
 				if (err){
 					if(err.code === 'ENOENT'){
 						console.log("key with name"+key+"does'nt exist")
-						return resolve(err);
+						resolve(err)
 					}
 				}
 				else{
-					// console.log(_this.optionals);
-					let value=_this.optionals.parse(json);
-					console.log(value);
+					// console.log(_this.optionals)
+					let value=_this.optionals.parse(json)
+					console.log(value)
 				}
 			})
 		})		
 	}
 
 	read(key){
-		this.optionals.expires=true?this.optionals.ttl<(new Date()).getTime():false;
+		this.optionals.expires=true?this.optionals.ttl<(new Date()).getTime():false
 		if(typeof key!='string'){
-			console.log("can't access the key other than string");
+			console.log("can't access the key other than string")
 		}
 		else if(this.optionals.expires){			
-			console.log('working')
-			this.delete(key);
+			this.delete(key)
 		}
 		else{
-			this.parseFile(key);
+			this.parseFile(key)
 		}
 	}
 
 	create(key,value,ttl){
-		let _this=this;
+		let _this=this
 		if (typeof ttl=== 'undefined'){
-			ttl=this.optionals.ttl;
+			ttl=this.optionals.ttl
 		}
-		let now=new Date();
-		this.optionals.ttl=now.getTime()+ttl;
-		console.log(ttl);
-		this.createFile(key,value);
+		let now=new Date()
+		this.optionals.ttl=now.getTime()+ttl
+		this.createFile(key,value)
 
 	}
 
@@ -107,22 +105,22 @@ class Smalldb {
 				if(err){
 					if(err.code==='ENOENT'){
 						console.error("key does not exist")
-						return resolve(err);
-					};
+						return resolve(err)
+					}
 				}
 				else{
 					fs.unlink(file,(err)=>{
 						if (err){
-							return reject(err);
-						};
-						resolve("done");
+							return reject(err)
+						}
+						resolve("done")
 						console.log(key+'was deleted')
 					})
 				}
-			});		
+			})		
 		})
 		
 	}
 }
 
-module.exports = Smalldb;
+module.exports = Smalldb

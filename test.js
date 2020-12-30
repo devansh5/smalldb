@@ -1,10 +1,15 @@
 const Smalldb=require('./scripts/index')
 
-// const db=new Smalldb({dir:'datastore'})
-const db=new Smalldb();
-// db.create('hello','namaste',10000);
-db.read('hello');
-// db.delete('hello');
-// db.create('hello','devansh',1000);
+const db=new Smalldb({dir:'datastore'})
+const db2=new Smalldb({dir:'storage'})
+async function init(){
+    
+    await db.create('hello','namaste')
+    // await db.create()
+    await db2.create('name',{firstname:'devansh',lastname:'chaubey'},1000)
+    await db.read('hello')
+    await db2.read('name')
+}
+init();
 
 
