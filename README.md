@@ -1,4 +1,4 @@
-https://img.shields.io/npm/v/@devansh5/smalldb
+<img src="https://img.shields.io/npm/v/@devansh5/smalldb">
 
 Smalldb is npm package meant for key-value storage.
 
