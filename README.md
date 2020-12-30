@@ -31,14 +31,15 @@ const db=Smalldb({optionals})
 ### Methods
 
 
-async function init(){
+// async function init(){
     
     // await db.create('hello','namaste')
-    // db.create('name',{firstname:'devansh',lastname:'chaubey'},1000)
-    // db.read('hello')
-    // db.read('name')
-}
-init();
+    // await db.create()
+    // await db2.create('name',{firstname:'devansh',lastname:'chaubey'},1000)
+    // await db.read('hello')
+    // await db2.read('name')
+//}
+//init();
 
 #### db.get(key)
 read the specified key file from the data storage directory and returns it
