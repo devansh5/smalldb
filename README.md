@@ -41,7 +41,7 @@ const db=Smalldb({optionals})
 //}
 //init();
 
-#### db.get(key)
+#### db.read(key)
 read the specified key file from the data storage directory and returns it
 return the JSON value if it exist.
 
